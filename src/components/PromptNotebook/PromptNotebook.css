@@ -1,0 +1,612 @@
+/* =========================================================
+   PROMPT NOTEBOOK
+   Mobile-first
+   ========================================================= */
+
+.prompt-notebook-card {
+  --green: #10342b;
+  --cream: #f5f1e7;
+  --orange: #c9783f;
+  --sage: #c8d4a7;
+
+  --ink: #17342d;
+  --ink-soft: #52645d;
+  --paper: #fbf8ef;
+
+  position: relative;
+
+  width: 100%;
+  max-width: 46rem;
+}
+
+/* =========================================================
+   STACKED PAPER
+   ========================================================= */
+
+.prompt-notebook-stack {
+  position: absolute;
+
+  inset: 0;
+
+  border: 1px solid rgba(16, 52, 43, 0.11);
+
+  border-radius: 1.15rem;
+
+  background: #ebe6d7;
+
+  box-shadow: 0 12px 30px rgba(16, 52, 43, 0.07);
+
+  transform: translate(9px, 10px) rotate(0.3deg);
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.prompt-notebook-page {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: clamp(1.8rem, 6vw, 3.25rem) clamp(1.3rem, 6vw, 3.4rem)
+    clamp(1.5rem, 5vw, 2.5rem);
+
+  border: 1px solid rgba(16, 52, 43, 0.16);
+
+  border-radius: 1.15rem;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2.15rem,
+      rgba(16, 52, 43, 0.075) 2.15rem,
+      rgba(16, 52, 43, 0.075) calc(2.15rem + 1px)
+    ),
+    var(--paper);
+
+  box-shadow:
+    0 28px 70px rgba(16, 52, 43, 0.11),
+    0 3px 8px rgba(16, 52, 43, 0.05);
+}
+
+/* Orange notebook margin */
+
+.prompt-notebook-page::before {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: clamp(2.35rem, 8vw, 4rem);
+
+  width: 1px;
+
+  content: "";
+
+  background: rgba(201, 120, 63, 0.22);
+}
+
+/* Small top color strip */
+
+.prompt-notebook-page::after {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 0.32rem;
+
+  content: "";
+
+  background: linear-gradient(
+    90deg,
+    var(--orange) 0 32%,
+    var(--sage) 32% 55%,
+    transparent 55%
+  );
+
+  opacity: 0.84;
+}
+
+/* =========================================================
+   BINDING
+   ========================================================= */
+
+.prompt-notebook-binding {
+  position: absolute;
+  z-index: 3;
+
+  top: 2.3rem;
+  left: -0.3rem;
+
+  display: grid;
+
+  gap: 1rem;
+}
+
+.prompt-notebook-binding span {
+  width: 1.15rem;
+  height: 0.32rem;
+
+  border-radius: 999px;
+
+  background: rgba(16, 52, 43, 0.32);
+
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.55);
+}
+
+/* =========================================================
+   SHARED INNER OFFSET
+   ========================================================= */
+
+.prompt-notebook-header,
+.prompt-notebook-preview,
+.prompt-notebook-expand,
+.prompt-notebook-helper,
+.prompt-notebook-actions {
+  position: relative;
+  z-index: 2;
+
+  margin-left: clamp(1.7rem, 6vw, 2.4rem);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.prompt-notebook-header {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+
+  padding-bottom: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+.prompt-notebook-category {
+  margin: 0 0 0.8rem;
+
+  color: var(--orange);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: 0.73rem;
+  font-weight: 800;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.prompt-notebook-header h3 {
+  max-width: 17ch;
+
+  margin: 0;
+
+  color: var(--green);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: clamp(1.5rem, 4.5vw, 2.3rem);
+
+  font-weight: 700;
+
+  line-height: 1.14;
+
+  letter-spacing: -0.035em;
+}
+
+.prompt-notebook-number {
+  flex: none;
+
+  color: rgba(16, 52, 43, 0.17);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: clamp(2.5rem, 8vw, 4.1rem);
+
+  font-weight: 800;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.06em;
+}
+
+/* =========================================================
+   PROMPT PREVIEW
+   ========================================================= */
+
+.prompt-notebook-preview {
+  position: relative;
+
+  color: #203f36;
+
+  font-size: clamp(1rem, 2.7vw, 1.13rem);
+
+  font-weight: 500;
+
+  line-height: 1.9;
+}
+
+.prompt-notebook-preview p {
+  margin: 0;
+
+  white-space: pre-line;
+}
+
+/* Collapsed state */
+
+.prompt-notebook-preview.is-collapsed {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+
+  line-clamp: var(--prompt-preview-lines, 7);
+
+  -webkit-line-clamp: var(--prompt-preview-lines, 7);
+}
+
+/* Fade at bottom of collapsed preview */
+
+.prompt-notebook-preview__fade {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 4rem;
+
+  background: linear-gradient(to bottom, transparent, var(--paper));
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   EXPAND BUTTON
+   ========================================================= */
+
+.prompt-notebook-expand {
+  display: inline-flex;
+
+  min-height: 44px;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  margin-top: 0.55rem;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--green);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: 0.78rem;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.prompt-notebook-expand span:last-child {
+  color: var(--orange);
+}
+
+.prompt-notebook-expand:focus-visible {
+  outline: 3px solid var(--orange);
+
+  outline-offset: 4px;
+
+  border-radius: 4px;
+}
+
+/* =========================================================
+   HELPER
+   ========================================================= */
+
+.prompt-notebook-helper {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 0.55rem;
+
+  margin-top: clamp(1.4rem, 4vw, 2rem);
+
+  color: #627169;
+
+  font-size: 0.86rem;
+  font-weight: 600;
+
+  line-height: 1.55;
+}
+
+.prompt-notebook-helper > span {
+  flex: none;
+
+  color: var(--orange);
+
+  font-size: 1rem;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.prompt-notebook-actions {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 0.85rem;
+
+  margin-top: clamp(1.6rem, 5vw, 2.4rem);
+
+  padding-top: 1.15rem;
+
+  border-top: 1px solid rgba(16, 52, 43, 0.11);
+}
+
+/* =========================================================
+   COPY BUTTON
+   ========================================================= */
+
+.prompt-copy-button {
+  position: relative;
+
+  display: inline-flex;
+
+  min-height: 48px;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  overflow: hidden;
+
+  padding: 0.8rem 1.15rem 0.8rem 0.92rem;
+
+  border: 1px solid var(--green);
+
+  border-radius: 999px;
+
+  background: var(--green);
+
+  color: var(--cream);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-weight: 750;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.prompt-copy-button:active {
+  transform: translateY(1px);
+}
+
+.prompt-copy-button:focus-visible {
+  outline: 3px solid var(--orange);
+
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   PENCIL
+   ========================================================= */
+
+.prompt-copy-button__pencil {
+  position: relative;
+
+  width: 1.3rem;
+  height: 1.3rem;
+
+  flex: none;
+
+  opacity: 0.72;
+
+  transform: rotate(-17deg) translateY(0);
+
+  transform-origin: 70% 70%;
+
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prompt-copy-button__pencil svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+.prompt-copy-button__pencil path {
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 3.4;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =========================================================
+   WRITING STROKE
+   ========================================================= */
+
+.prompt-copy-button__stroke {
+  position: absolute;
+
+  left: 2.85rem;
+  bottom: 0.6rem;
+
+  width: 4.2rem;
+  height: 1px;
+
+  background: var(--sage);
+
+  opacity: 0;
+
+  transform: scaleX(0);
+
+  transform-origin: left;
+}
+
+/* =========================================================
+   COPIED STATE
+   ========================================================= */
+
+.prompt-copy-button.is-copied .prompt-copy-button__pencil {
+  opacity: 1;
+
+  animation: prompt-pencil-write 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prompt-copy-button.is-copied .prompt-copy-button__stroke {
+  opacity: 0.85;
+
+  animation: prompt-writing-stroke 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes prompt-pencil-write {
+  0% {
+    transform: rotate(-17deg) translate(0, 0);
+  }
+
+  35% {
+    transform: rotate(-31deg) translate(3px, 3px);
+  }
+
+  70% {
+    transform: rotate(-25deg) translate(8px, 3px);
+  }
+
+  100% {
+    transform: rotate(-17deg) translate(0, 0);
+  }
+}
+
+@keyframes prompt-writing-stroke {
+  0% {
+    transform: scaleX(0);
+  }
+
+  80% {
+    transform: scaleX(1);
+  }
+
+  100% {
+    transform: scaleX(0.82);
+  }
+}
+
+/* =========================================================
+   COPY STATUS
+   ========================================================= */
+
+.prompt-copy-status {
+  min-height: 1.2em;
+
+  margin: 0;
+
+  color: var(--ink-soft);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .prompt-copy-button:hover {
+    background: #18463b;
+
+    box-shadow: 0 8px 20px rgba(16, 52, 43, 0.13);
+  }
+
+  .prompt-copy-button:hover .prompt-copy-button__pencil {
+    opacity: 1;
+
+    transform: rotate(-28deg) translate(2px, 2px);
+  }
+
+  .prompt-copy-button:hover .prompt-copy-button__stroke {
+    opacity: 0.5;
+
+    transform: scaleX(0.35);
+
+    transition:
+      transform 260ms ease,
+      opacity 200ms ease;
+  }
+
+  .prompt-notebook-expand:hover {
+    color: var(--orange);
+  }
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 760px) {
+  .prompt-notebook-page {
+    min-height: 36rem;
+  }
+
+  .prompt-copy-button__pencil {
+    opacity: 0.55;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt-copy-button,
+  .prompt-copy-button__pencil,
+  .prompt-copy-button__stroke {
+    transition: none;
+  }
+
+  .prompt-copy-button.is-copied .prompt-copy-button__pencil {
+    animation: none;
+
+    transform: rotate(-17deg);
+  }
+
+  .prompt-copy-button.is-copied .prompt-copy-button__stroke {
+    animation: none;
+
+    transform: scaleX(0.82);
+  }
+}

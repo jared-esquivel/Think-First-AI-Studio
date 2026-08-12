@@ -1,0 +1,448 @@
+/* =========================================================
+   THINK FIRST — MISSION
+   CodePen composition adapted for React
+   Mobile-first
+   ========================================================= */
+
+.mission {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 3.5rem 1.25rem 4.5rem;
+
+  background: linear-gradient(180deg, #10342b 0%, #102f28 100%);
+
+  color: #f5f1e7;
+}
+
+/* =========================================================
+   SUBTLE ATMOSPHERE
+
+   No grid.
+   No grain.
+   ========================================================= */
+
+.mission__ambient {
+  position: absolute;
+  z-index: 0;
+
+  top: 15%;
+  left: 50%;
+
+  width: 850px;
+  height: 850px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(126, 159, 134, 0.07) 0%,
+    rgba(76, 112, 94, 0.025) 45%,
+    transparent 72%
+  );
+
+  filter: blur(30px);
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   INNER
+   ========================================================= */
+
+.mission__inner {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, 100%);
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   TOP METADATA
+   ========================================================= */
+
+.mission__meta {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  color: rgba(245, 241, 231, 0.4);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: 0.6rem;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.mission__rule {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 1rem;
+
+  background: rgba(245, 241, 231, 0.13);
+}
+
+/* =========================================================
+   MAIN STATEMENT
+
+   This restores the CodePen composition:
+   relative stage + absolutely positioned spiral.
+   ========================================================= */
+
+.mission__statement {
+  position: relative;
+
+  padding: 4rem 0 3.25rem;
+}
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
+
+.mission__line {
+  position: relative;
+  z-index: 3;
+
+  margin: 0;
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: clamp(3rem, 14vw, 4.8rem);
+
+  font-weight: 750;
+
+  letter-spacing: -0.068em;
+
+  line-height: 0.92;
+
+  text-wrap: balance;
+}
+
+/* =========================================================
+   THINK FOR YOURSELF
+   ========================================================= */
+
+.mission__line--primary {
+  max-width: 9ch;
+
+  color: #f5f1e7;
+}
+
+.mission__line span {
+  color: #c9783f;
+}
+
+/* =========================================================
+   SHAPE THE FUTURE OF AI
+
+   Deliberately pushed lower + right,
+   like the CodePen.
+   ========================================================= */
+
+.mission__line--secondary {
+  max-width: 9ch;
+
+  margin-top: 10.5rem;
+  margin-left: auto;
+
+  color: #c8d4a7;
+
+  text-align: left;
+}
+
+/* =========================================================
+   REAL THINK FIRST SPIRAL
+   ========================================================= */
+
+.mission__logo-wrap {
+  position: absolute;
+  z-index: 1;
+
+  top: 49%;
+  left: 50%;
+
+  display: grid;
+
+  width: clamp(155px, 45vw, 245px);
+
+  aspect-ratio: 1;
+
+  place-items: center;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+/* Warm ambient light */
+
+.mission__logo-glow {
+  position: absolute;
+
+  width: 85%;
+  height: 85%;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(201, 120, 63, 0.16),
+    rgba(201, 120, 63, 0.055) 42%,
+    transparent 72%
+  );
+
+  filter: blur(24px);
+
+  pointer-events: none;
+}
+
+/* Actual uploaded spiral */
+
+.mission__logo {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0.88;
+
+  transform-origin: center;
+
+  animation: mission-logo-turn 28s linear infinite;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+}
+
+/* =========================================================
+   MISSION COPY
+   ========================================================= */
+
+.mission__copy-wrap {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 1.5rem;
+
+  padding: 2.25rem 0 4rem;
+}
+
+/* Orange editorial accent */
+
+.mission__copy-rule {
+  width: 3rem;
+  height: 2px;
+
+  background: #c9783f;
+}
+
+/* Copy */
+
+.mission__copy {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: rgba(245, 241, 231, 0.66);
+
+  font-size: clamp(1rem, 2.8vw, 1.12rem);
+
+  line-height: 1.78;
+
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   BOTTOM METADATA
+   ========================================================= */
+
+.mission__footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding-top: 1rem;
+
+  border-top: 1px solid rgba(245, 241, 231, 0.1);
+
+  color: rgba(245, 241, 231, 0.29);
+
+  font-family: "Manrope", system-ui, sans-serif;
+
+  font-size: 0.61rem;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   SCREEN READER ONLY
+   ========================================================= */
+
+.mission__sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  padding: 0;
+
+  margin: -1px;
+
+  border: 0;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ROTATION
+   ========================================================= */
+
+@keyframes mission-logo-turn {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET / DESKTOP
+   ========================================================= */
+
+@media (min-width: 700px) {
+  .mission {
+    padding: 4.5rem clamp(2rem, 5vw, 3.5rem) 5rem;
+  }
+
+  .mission__meta {
+    font-size: 0.68rem;
+  }
+
+  /* 
+    CodePen used 780px here.
+
+    We're using 610px so it keeps the same
+    composition without feeling like Hero #2.
+  */
+
+  .mission__statement {
+    min-height: 610px;
+
+    padding: clamp(4.5rem, 7vw, 6rem) 0;
+  }
+
+  .mission__line {
+    font-size: clamp(4.5rem, 7vw, 6.8rem);
+  }
+
+  .mission__line--primary {
+    max-width: 10ch;
+  }
+
+  .mission__line--secondary {
+    max-width: 8.5ch;
+
+    margin-top: clamp(8rem, 13vw, 11rem);
+
+    margin-right: clamp(1rem, 7vw, 6rem);
+  }
+
+  .mission__logo-wrap {
+    top: 52%;
+
+    width: clamp(250px, 24vw, 370px);
+  }
+
+  /* =======================================================
+     Editorial copy placement
+
+     Same CodePen idea:
+     rule + readable paragraph,
+     offset inward without becoming a sidebar.
+     ======================================================= */
+
+  .mission__copy-wrap {
+    grid-template-columns:
+      5rem
+      minmax(0, 680px);
+
+    align-items: start;
+
+    gap: 2rem;
+
+    padding: 2.75rem 0 4.5rem;
+
+    margin-left: clamp(3rem, 12vw, 10rem);
+  }
+
+  .mission__copy-rule {
+    margin-top: 0.8rem;
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1100px) {
+  .mission__statement {
+    min-height: 650px;
+  }
+
+  .mission__line--secondary {
+    margin-right: 7rem;
+  }
+
+  .mission__logo-wrap {
+    width: 390px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .mission__logo {
+    animation: none;
+
+    transform: rotate(-8deg);
+  }
+}
