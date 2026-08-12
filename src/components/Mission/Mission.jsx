@@ -1,5 +1,5 @@
 import "./Mission.css";
-import thinkFirstSpiral from "../../assets/ThinkFirstSpiral.svg";
+import thinkFirstSpiral from "../../assets/thinkFirstSpiral.svg";
 
 function Mission() {
   return (
