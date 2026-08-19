@@ -15,18 +15,16 @@ const resources = [
     id: "prompting",
     title: "Prompting Framework",
     description: "Learn how to ask clearer and more intentional questions.",
-    to: "/prompting",
+    to: "/prompt-framework",
     Icon: PromptIcon,
-    available: false,
   },
   {
     id: "evaluate",
     title: "Academic Integrity",
     description:
       "Learn how to use AI responsibly while keeping your work your own.",
-    to: "/evaluate",
+    to: "/academic-integrity",
     Icon: EvaluateIcon,
-    available: false,
   },
   {
     id: "learn",
@@ -35,22 +33,19 @@ const resources = [
       "Find, copy, and customize prompts designed to support your learning.",
     to: "/prompt-library",
     Icon: LearnIcon,
-    available: true,
   },
   {
     id: "build",
     title: "Workshop Materials",
     description:
       "Revisit activities, examples, and resources from Think First workshops.",
-    to: "/build",
+    to: "/workshop-resources",
     Icon: BuildIcon,
-    available: false,
   },
 ];
 
 function ResourceGrid() {
   const sectionRef = useRef(null);
-  const noticeTimerRef = useRef(null);
 
   const [gridDimensions, setGridDimensions] = useState({
     columns: 1,
@@ -59,32 +54,6 @@ function ResourceGrid() {
   });
 
   const [gridActivated, setGridActivated] = useState(false);
-
-  const [comingSoonNotice, setComingSoonNotice] = useState("");
-
-  /* =========================================================
-     COMING SOON NOTICE
-     ========================================================= */
-
-  const showComingSoon = (title) => {
-    if (noticeTimerRef.current) {
-      window.clearTimeout(noticeTimerRef.current);
-    }
-
-    setComingSoonNotice(`${title} is still being built. Check back soon!`);
-
-    noticeTimerRef.current = window.setTimeout(() => {
-      setComingSoonNotice("");
-    }, 3200);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (noticeTimerRef.current) {
-        window.clearTimeout(noticeTimerRef.current);
-      }
-    };
-  }, []);
 
   /* =========================================================
      MATCH ACTIVATION CELLS TO EXISTING GRID
@@ -203,7 +172,6 @@ function ResourceGrid() {
         if (entry.isIntersecting) {
           if (!isInView) {
             isInView = true;
-
             playSweep();
           }
         } else {
@@ -213,7 +181,6 @@ function ResourceGrid() {
 
           if (loopTimer) {
             window.clearTimeout(loopTimer);
-
             loopTimer = null;
           }
         }
@@ -290,8 +257,12 @@ function ResourceGrid() {
         {resources.map((resource) => {
           const Icon = resource.Icon;
 
-          const cardContent = (
-            <>
+          return (
+            <Link
+              key={resource.id}
+              to={resource.to}
+              className={`think-resource-card think-resource-card--${resource.id}`}
+            >
               <div
                 className="think-resource-card__illustration"
                 aria-hidden="true"
@@ -312,67 +283,14 @@ function ResourceGrid() {
                   className="think-resource-card__explore"
                   aria-hidden="true"
                 >
-                  <span>{resource.available ? "Explore" : "Coming soon"}</span>
+                  <span>Explore</span>
 
-                  <span className="think-resource-card__arrow">
-                    {resource.available ? "→" : "✦"}
-                  </span>
+                  <span className="think-resource-card__arrow">→</span>
                 </span>
               </div>
-            </>
-          );
-
-          /* ===============================================
-             READY PAGE
-          =============================================== */
-
-          if (resource.available) {
-            return (
-              <Link
-                key={resource.id}
-                to={resource.to}
-                className={`think-resource-card think-resource-card--${resource.id}`}
-              >
-                {cardContent}
-              </Link>
-            );
-          }
-
-          /* ===============================================
-             NOT READY YET
-          =============================================== */
-
-          return (
-            <button
-              key={resource.id}
-              type="button"
-              className={`think-resource-card think-resource-card--${resource.id} think-resource-card--coming-soon`}
-              onClick={() => showComingSoon(resource.title)}
-              aria-label={`${resource.title}. This page is coming soon.`}
-            >
-              {cardContent}
-            </button>
+            </Link>
           );
         })}
-      </div>
-
-      {/* =====================================================
-          ACCESSIBLE COMING-SOON NOTICE
-      ===================================================== */}
-
-      <div
-        className={`think-resource-notice${
-          comingSoonNotice ? " is-visible" : ""
-        }`}
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        <span className="think-resource-notice__icon" aria-hidden="true">
-          ✦
-        </span>
-
-        <span>{comingSoonNotice}</span>
       </div>
     </section>
   );

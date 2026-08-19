@@ -1,9 +1,13 @@
+import { Link } from "react-router";
 import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="think-footer">
-      {/* Decorative background layers */}
+      {/* ========================================
+          Decorative background layers
+      ======================================== */}
+
       <div className="think-footer__grid" aria-hidden="true" />
 
       <div className="think-footer__glow" aria-hidden="true" />
@@ -15,8 +19,8 @@ function Footer() {
           ======================================== */}
 
           <div className="think-footer__brand">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="think-footer__wordmark"
               aria-label="Think First home"
             >
@@ -24,7 +28,7 @@ function Footer() {
               <span className="think-footer__period" aria-hidden="true">
                 .
               </span>
-            </a>
+            </Link>
 
             <p className="think-footer__brand-label">AI Studio</p>
 
@@ -38,34 +42,37 @@ function Footer() {
           ======================================== */}
 
           <nav className="think-footer__nav" aria-label="Footer navigation">
+            {/* Explore */}
             <div className="think-footer__nav-group">
               <p className="think-footer__nav-title">Explore</p>
 
-              <a href="#mission">Mission</a>
+              <Link to="/#mission">Mission</Link>
 
-              <a href="#ai-tools">AI Tools</a>
+              <Link to="/prompt-library">Prompt Library</Link>
 
-              <a href="#prompt-library">Prompt Library</a>
+              <Link to="/workshop-resources">Workshop Resources</Link>
             </div>
 
+            {/* Learn */}
             <div className="think-footer__nav-group">
               <p className="think-footer__nav-title">Learn</p>
 
-              <a href="#workshops">Workshops</a>
+              <Link to="/prompt-framework">Prompting Framework</Link>
 
-              <a href="#guides">Guides</a>
+              <Link to="/academic-integrity">Academic Integrity</Link>
 
-              <a href="#learning-resources">Resources</a>
+              <Link to="/prompt-library">Explore Prompts</Link>
             </div>
 
+            {/* Resources */}
             <div className="think-footer__nav-group">
-              <p className="think-footer__nav-title">Connect</p>
+              <p className="think-footer__nav-title">Resources</p>
 
-              <a href="#about">About</a>
+              <Link to="/workshop-resources">Workshops</Link>
 
-              <a href="#contact">Contact</a>
+              <Link to="/prompt-library">Prompt Library</Link>
 
-              <a href="#feedback">Feedback</a>
+              <Link to="/">Think First Home</Link>
             </div>
           </nav>
         </div>

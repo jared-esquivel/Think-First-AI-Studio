@@ -1,0 +1,1281 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Patrick+Hand&family=Sora:wght@500;600;700&display=swap");
+
+/* =========================================
+   TOKENS
+   MOBILE FIRST
+   ========================================= */
+
+.cider-page {
+  --cider-green: #10342b;
+  --cider-green-secondary: #14342b;
+  --cider-cream: #f5f1e7;
+  --cider-orange: #c9783f;
+
+  /* Better contrast for smaller text */
+  --cider-orange-light: #e89a63;
+  --cider-orange-dark: #94491f;
+
+  --cider-sage: #c9d5c9;
+  --cider-black: #0e0e0e;
+  --cider-white: #ffffff;
+
+  --cider-border-dark: rgba(245, 241, 231, 0.2);
+
+  --cider-border-light: rgba(16, 52, 43, 0.2);
+
+  --cider-shell: 77.5rem;
+
+  min-width: 0;
+  overflow-x: clip;
+
+  background: var(--cider-green);
+  color: var(--cider-cream);
+
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cider-page *,
+.cider-page *::before,
+.cider-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SHARED
+   ========================================= */
+
+.cider-shell {
+  width: min(calc(100% - 2rem), var(--cider-shell));
+
+  margin-inline: auto;
+}
+
+.cider-eyebrow {
+  margin: 0 0 1.2rem;
+
+  color: var(--cider-orange-light);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.13em;
+}
+
+.cider-eyebrow--dark {
+  color: var(--cider-orange-dark);
+}
+
+.cider-handwritten {
+  font-family: "Patrick Hand", "Comic Sans MS", cursive;
+}
+
+/* =========================================
+   SCROLL REVEAL
+   ========================================= */
+
+.cider-reveal {
+  opacity: 0;
+
+  transform: translateY(1.75rem);
+
+  transition:
+    opacity 700ms ease var(--cider-reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1)
+      var(--cider-reveal-delay, 0ms);
+}
+
+.cider-reveal--visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.cider-hero {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 40rem;
+
+  overflow: hidden;
+
+  background: var(--cider-green);
+}
+
+.cider-hero__grid {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.045;
+
+  background-image:
+    linear-gradient(var(--cider-cream) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cider-cream) 1px, transparent 1px);
+
+  background-size: 2.5rem 2.5rem;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
+
+.cider-hero__content {
+  padding-block: clamp(5rem, 16vw, 7rem) clamp(4.5rem, 14vw, 6rem);
+}
+
+.cider-hero__header {
+  animation: ciderHeroEntrance 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes ciderHeroEntrance {
+  from {
+    opacity: 0;
+
+    transform: translateY(1.8rem);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.cider-hero__title {
+  max-width: 13ch;
+
+  margin: 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(2.8rem, 12vw, 4.5rem);
+
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+.cider-highlight {
+  position: relative;
+
+  display: inline;
+
+  color: var(--cider-orange-light);
+}
+
+.cider-highlight::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -0.08em;
+
+  width: 100%;
+  height: 0.08em;
+
+  border-radius: 999px;
+
+  background: var(--cider-orange-light);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: ciderUnderline 900ms ease 650ms forwards;
+}
+
+@keyframes ciderUnderline {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.cider-hero__copy {
+  max-width: 42rem;
+
+  margin: clamp(2rem, 8vw, 3rem) 0 0;
+
+  color: var(--cider-sage);
+
+  font-size: clamp(1rem, 4.5vw, 1.18rem);
+
+  line-height: 1.75;
+}
+
+.cider-hero__annotation {
+  width: fit-content;
+  max-width: 100%;
+
+  margin: clamp(3rem, 12vw, 5rem) 0 0 auto;
+
+  color: var(--cider-cream);
+
+  font-size: clamp(1.2rem, 5vw, 1.55rem);
+
+  transform: rotate(-3deg);
+
+  animation: ciderAnnotationEntrance 700ms ease 1000ms both;
+}
+
+@keyframes ciderAnnotationEntrance {
+  from {
+    opacity: 0;
+
+    transform: translateY(0.75rem) rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+
+.cider-hero__scribble {
+  display: none;
+
+  position: absolute;
+  z-index: -1;
+
+  pointer-events: none;
+
+  color: rgba(245, 241, 231, 0.11);
+
+  font-family: "Patrick Hand", cursive;
+
+  font-size: 1.7rem;
+}
+
+/* =========================================
+   SECTION HEADINGS
+   ========================================= */
+
+.cider-section-heading {
+  max-width: 55rem;
+
+  margin-bottom: clamp(2.75rem, 10vw, 5rem);
+}
+
+.cider-section-heading h2 {
+  margin: 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(2.4rem, 10vw, 4.5rem);
+
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.cider-section-heading > p:last-child {
+  max-width: 42rem;
+
+  margin: 1.5rem 0 0;
+
+  color: var(--cider-sage);
+
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.cider-section-heading--dark {
+  color: var(--cider-green);
+}
+
+.cider-section-heading--dark > p:last-child {
+  color: #33584e;
+}
+
+/* =========================================
+   FRAMEWORK
+   ========================================= */
+
+.cider-framework {
+  padding-block: clamp(5rem, 15vw, 8rem);
+
+  background: var(--cider-green);
+}
+
+.cider-framework__grid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  gap: 1rem;
+}
+
+.cider-framework__grid > .cider-reveal {
+  height: 100%;
+}
+
+/* =========================================
+   CIDER CARD
+   ========================================= */
+
+.cider-card {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  min-width: 0;
+
+  padding: 1.5rem;
+
+  border: 1px solid var(--cider-border-dark);
+
+  border-radius: 1.5rem;
+
+  background: rgba(245, 241, 231, 0.035);
+
+  transition:
+    transform 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.cider-card__letter {
+  margin-bottom: 1rem;
+
+  color: var(--cider-orange-light);
+
+  font-family: "Patrick Hand", cursive;
+
+  font-size: clamp(4.5rem, 22vw, 6rem);
+
+  line-height: 0.85;
+
+  transition: transform 250ms ease;
+}
+
+.cider-card__label {
+  margin: 0 0 0.8rem;
+
+  color: var(--cider-orange-light);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cider-card__question {
+  margin: 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.cider-card__description {
+  margin: 1rem 0 1.5rem;
+
+  color: var(--cider-sage);
+
+  line-height: 1.7;
+}
+
+.cider-card__example {
+  margin-top: auto;
+
+  padding: 1rem;
+
+  border-left: 2px solid var(--cider-orange-light);
+
+  background: rgba(245, 241, 231, 0.04);
+}
+
+.cider-card__example-label {
+  margin: 0 !important;
+
+  color: var(--cider-orange-light) !important;
+
+  font-size: 0.7rem !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cider-card__example p:last-child {
+  margin: 0.55rem 0 0;
+
+  color: var(--cider-cream);
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   PUT IT TOGETHER
+   ========================================= */
+
+.cider-build {
+  position: relative;
+  isolation: isolate;
+
+  overflow: hidden;
+
+  padding-block: clamp(5rem, 15vw, 8rem);
+
+  background: var(--cider-cream);
+
+  color: var(--cider-green);
+}
+
+.cider-build__grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.06;
+
+  background-image:
+    linear-gradient(var(--cider-green) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cider-green) 1px, transparent 1px);
+
+  background-size: 2rem 2rem;
+}
+
+.cider-build__tag {
+  margin: 0;
+
+  color: var(--cider-orange-dark);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.cider-before {
+  max-width: 50rem;
+
+  margin-bottom: 2rem;
+
+  padding: 1.5rem;
+
+  border: 1px solid var(--cider-border-light);
+
+  border-radius: 1.25rem;
+
+  background: rgba(16, 52, 43, 0.03);
+}
+
+.cider-before blockquote {
+  margin: 1rem 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(1.5rem, 7vw, 2.3rem);
+
+  line-height: 1.3;
+}
+
+.cider-before__note {
+  margin: 0;
+
+  color: var(--cider-orange-dark);
+
+  font-size: 1.2rem;
+}
+
+.cider-pieces {
+  display: grid;
+
+  gap: 0.85rem;
+
+  margin-block: clamp(2.5rem, 10vw, 4rem);
+}
+
+.cider-piece {
+  display: grid;
+
+  grid-template-columns:
+    3rem
+    minmax(0, 1fr);
+
+  align-items: start;
+
+  gap: 1rem;
+
+  padding: 1.1rem;
+
+  border-bottom: 1px solid rgba(16, 52, 43, 0.16);
+}
+
+.cider-piece__letter {
+  display: grid;
+  place-items: center;
+
+  width: 2.7rem;
+  height: 2.7rem;
+
+  border: 1px solid var(--cider-orange-dark);
+
+  border-radius: 50%;
+
+  color: var(--cider-orange-dark);
+
+  font-family: "Sora", sans-serif;
+
+  font-weight: 700;
+}
+
+.cider-piece__label {
+  margin: 0 0 0.35rem;
+
+  color: var(--cider-orange-dark);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cider-piece__text {
+  margin: 0;
+
+  line-height: 1.65;
+}
+
+.cider-after {
+  margin-top: 3rem;
+
+  padding: clamp(1.5rem, 6vw, 2.75rem);
+
+  border-radius: 1.5rem;
+
+  background: var(--cider-green);
+
+  color: var(--cider-cream);
+
+  transition: transform 250ms ease;
+}
+
+.cider-after__top {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.cider-after__top .cider-build__tag {
+  color: var(--cider-orange-light);
+}
+
+.cider-after__top span {
+  color: var(--cider-orange-light);
+
+  font-family: "Patrick Hand", cursive;
+
+  font-size: 2rem;
+}
+
+.cider-after blockquote {
+  margin: 1.5rem 0 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(1.25rem, 5vw, 1.8rem);
+
+  line-height: 1.55;
+}
+
+.cider-build__takeaway {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+
+  margin: 2rem 0 0;
+
+  color: var(--cider-orange-dark);
+
+  font-family: "Patrick Hand", cursive;
+
+  font-size: clamp(1.3rem, 5vw, 1.7rem);
+}
+
+/* =========================================
+   BUILDER
+   ========================================= */
+
+.cider-builder {
+  padding-block: clamp(5rem, 15vw, 8rem);
+
+  background: var(--cider-green);
+}
+
+.cider-builder__layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  gap: 2rem;
+}
+
+.cider-form {
+  display: grid;
+
+  gap: 1rem;
+
+  min-width: 0;
+}
+
+.cider-field {
+  display: grid;
+
+  grid-template-columns:
+    2.75rem
+    minmax(0, 1fr);
+
+  gap: 0.9rem;
+
+  min-width: 0;
+
+  padding: 1rem 0;
+
+  border-bottom: 1px solid var(--cider-border-dark);
+}
+
+.cider-field__letter {
+  display: grid;
+  place-items: center;
+
+  width: 2.6rem;
+  height: 2.6rem;
+
+  border: 1px solid var(--cider-orange-light);
+
+  border-radius: 50%;
+
+  color: var(--cider-orange-light);
+
+  font-weight: 700;
+}
+
+.cider-field__content {
+  min-width: 0;
+}
+
+.cider-field label {
+  display: block;
+
+  margin-bottom: 0.65rem;
+
+  color: var(--cider-cream);
+
+  font-family: "Sora", sans-serif;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cider-field textarea {
+  display: block;
+
+  width: 100%;
+
+  min-height: 7rem;
+
+  resize: vertical;
+
+  padding: 0.95rem 1rem;
+
+  border: 1px solid rgba(245, 241, 231, 0.28);
+
+  border-radius: 0.9rem;
+
+  background: rgba(245, 241, 231, 0.045);
+
+  color: var(--cider-cream);
+
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.cider-field textarea::placeholder {
+  color: rgba(201, 213, 201, 0.68);
+}
+
+.cider-field textarea:focus-visible {
+  outline: 3px solid var(--cider-orange-light);
+
+  outline-offset: 3px;
+
+  border-color: transparent;
+
+  background: rgba(245, 241, 231, 0.07);
+}
+
+/* =========================================
+   GENERATED PROMPT
+   ========================================= */
+
+.cider-output {
+  position: relative;
+
+  align-self: start;
+
+  min-width: 0;
+
+  padding: 1.5rem;
+
+  border: 1px solid var(--cider-border-dark);
+
+  border-radius: 1.5rem;
+
+  background: rgba(245, 241, 231, 0.045);
+}
+
+.cider-output__header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid var(--cider-border-dark);
+}
+
+.cider-output__header > p {
+  margin: 0;
+
+  color: var(--cider-orange-light);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.cider-output__status {
+  color: var(--cider-sage);
+
+  font-size: 0.8rem;
+
+  text-align: right;
+}
+
+.cider-output__prompt {
+  min-height: 15rem;
+
+  padding-block: 1.5rem;
+
+  color: var(--cider-cream);
+
+  font-size: 1rem;
+  line-height: 1.75;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.cider-output__prompt p {
+  margin: 0;
+}
+
+.cider-output__empty {
+  color: var(--cider-sage);
+}
+
+.cider-copy {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.8rem;
+
+  min-height: 3rem;
+
+  padding: 0.75rem 1.1rem;
+
+  border: 1px solid var(--cider-orange-light);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--cider-cream);
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.cider-copy:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.45;
+}
+
+.cider-copy:focus-visible {
+  outline: 3px solid var(--cider-orange-light);
+
+  outline-offset: 4px;
+}
+
+/* =========================================
+   CHECK
+   ========================================= */
+
+.cider-check {
+  padding-block: clamp(5rem, 15vw, 8rem);
+
+  background: var(--cider-green);
+}
+
+.cider-check__list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  border-top: 1px solid var(--cider-border-dark);
+}
+
+.cider-check__list > .cider-reveal {
+  width: 100%;
+}
+
+.cider-check__item {
+  display: grid;
+
+  grid-template-columns:
+    2.5rem
+    minmax(0, 1fr)
+    2rem;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  min-height: 4.5rem;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 1px solid var(--cider-border-dark);
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
+
+  line-height: 1.4;
+}
+
+.cider-check__number {
+  color: var(--cider-orange-light);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cider-check__item > span:last-child {
+  justify-self: end;
+
+  color: var(--cider-orange-light);
+}
+
+.cider-check__closing {
+  margin-top: 3rem;
+}
+
+.cider-check__closing .cider-handwritten {
+  margin: 0 0 0.4rem;
+
+  color: var(--cider-sage);
+
+  font-size: 1.3rem;
+}
+
+.cider-check__closing > p:last-child {
+  margin: 0;
+
+  color: var(--cider-orange-light);
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(2.25rem, 10vw, 4.5rem);
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* =========================================
+   CLOSING
+   ========================================= */
+
+.cider-closing {
+  position: relative;
+  isolation: isolate;
+
+  overflow: hidden;
+
+  padding-block: clamp(5rem, 15vw, 8rem);
+
+  background: var(--cider-cream);
+
+  color: var(--cider-green);
+}
+
+.cider-closing__grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.06;
+
+  background-image:
+    linear-gradient(var(--cider-green) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cider-green) 1px, transparent 1px);
+
+  background-size: 2.2rem 2.2rem;
+}
+
+.cider-closing__mark {
+  margin-bottom: 1.5rem;
+
+  color: var(--cider-orange-dark);
+
+  font-family: "Patrick Hand", cursive;
+
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.cider-closing h2 {
+  max-width: 14ch;
+
+  margin: 0;
+
+  font-family: "Sora", sans-serif;
+
+  font-size: clamp(2.7rem, 11vw, 5rem);
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.cider-closing h2 span {
+  color: var(--cider-orange-dark);
+}
+
+.cider-closing__copy {
+  max-width: 40rem;
+
+  margin: 2rem 0 0;
+
+  font-size: 1.05rem;
+
+  line-height: 1.75;
+}
+
+.cider-closing__link {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  min-height: 3rem;
+
+  margin-top: 2.5rem;
+
+  padding: 0.75rem 1.1rem;
+
+  border: 1px solid var(--cider-green);
+
+  border-radius: 999px;
+
+  color: var(--cider-green);
+
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.cider-closing__link:focus-visible {
+  outline: 3px solid var(--cider-orange-dark);
+
+  outline-offset: 4px;
+}
+
+/* =========================================
+   HOVER CAPABLE DEVICES ONLY
+   ========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .cider-card:hover {
+    transform: translateY(-0.4rem);
+
+    border-color: rgba(232, 154, 99, 0.65);
+
+    background: rgba(245, 241, 231, 0.055);
+  }
+
+  .cider-card:hover .cider-card__letter {
+    transform: rotate(-5deg) scale(1.04);
+  }
+
+  .cider-after:hover {
+    transform: translateY(-0.2rem);
+  }
+
+  .cider-copy:not(:disabled):hover {
+    transform: translateY(-0.15rem);
+
+    background: var(--cider-orange-light);
+
+    color: var(--cider-green);
+  }
+
+  .cider-closing__link:hover {
+    transform: translateY(-0.15rem);
+
+    background: var(--cider-green);
+
+    color: var(--cider-cream);
+  }
+}
+
+/* =========================================
+   TABLET — 768px+
+   ========================================= */
+
+@media (min-width: 48rem) {
+  .cider-shell {
+    width: min(calc(100% - 4rem), var(--cider-shell));
+  }
+
+  .cider-hero {
+    min-height: 46rem;
+  }
+
+  .cider-hero__title {
+    max-width: 14ch;
+
+    font-size: clamp(4.3rem, 8vw, 6rem);
+  }
+
+  .cider-framework__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.25rem;
+  }
+
+  .cider-card {
+    padding: 2rem;
+  }
+
+  .cider-piece {
+    grid-template-columns:
+      4rem
+      minmax(0, 1fr);
+
+    padding-block: 1.35rem;
+  }
+
+  .cider-builder__layout {
+    gap: 3rem;
+  }
+
+  .cider-field {
+    grid-template-columns:
+      3.5rem
+      minmax(0, 1fr);
+
+    gap: 1.25rem;
+  }
+
+  .cider-output {
+    padding: 2rem;
+  }
+
+  .cider-check__item {
+    grid-template-columns:
+      4rem
+      minmax(0, 1fr)
+      3rem;
+
+    padding-block: 1.9rem;
+  }
+}
+
+/* =========================================
+   LAPTOP — 1024px+
+   ========================================= */
+
+@media (min-width: 64rem) {
+  .cider-hero {
+    min-height: min(53rem, 100vh);
+  }
+
+  .cider-hero__scribble {
+    display: block;
+  }
+
+  .cider-hero__scribble--one {
+    top: 19%;
+    right: 5%;
+
+    transform: rotate(7deg);
+  }
+
+  .cider-hero__scribble--two {
+    left: 5%;
+    bottom: 9%;
+
+    transform: rotate(-5deg);
+  }
+
+  .cider-framework__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .cider-card {
+    padding: 1.5rem;
+
+    border-radius: 1.25rem;
+  }
+
+  .cider-card__letter {
+    font-size: clamp(4.5rem, 6vw, 6rem);
+  }
+
+  .cider-card__question {
+    font-size: 1.2rem;
+  }
+
+  .cider-card__description {
+    font-size: 0.95rem;
+  }
+
+  .cider-pieces {
+    max-width: 58rem;
+  }
+
+  .cider-after {
+    max-width: 66rem;
+  }
+
+  .cider-builder__layout {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(20rem, 0.85fr);
+
+    align-items: start;
+
+    gap: 4rem;
+  }
+
+  .cider-output {
+    position: sticky;
+    top: 2rem;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP — 1280px+
+   ========================================= */
+
+@media (min-width: 80rem) {
+  .cider-shell {
+    width: min(calc(100% - 6rem), var(--cider-shell));
+  }
+
+  .cider-card {
+    padding: 1.75rem;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cider-page *,
+  .cider-page *::before,
+  .cider-page *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+  .cider-reveal {
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .cider-hero__header,
+  .cider-hero__annotation {
+    animation: none;
+  }
+
+  .cider-highlight::after {
+    animation: none;
+
+    transform: scaleX(1);
+  }
+
+  .cider-card:hover,
+  .cider-card:hover .cider-card__letter,
+  .cider-after:hover,
+  .cider-copy:hover,
+  .cider-closing__link:hover {
+    transform: none;
+  }
+}
